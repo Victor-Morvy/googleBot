@@ -8,7 +8,7 @@ Before you use that, install this modules:
 pip install selenium
 pip install webdriver_manager
 ```
-### set a object for GoogleSearchBot() class
+### set a object for GoogleSearchBot() class, code example:
 ```
 import lib.googleBot as GoogleBot
 
