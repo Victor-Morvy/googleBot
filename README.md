@@ -5,6 +5,8 @@ This is a google search bot, it will search the arguments who you write, and wil
 
 # Instance Attributes
 
+## set a variable for GoogleSearchBot(interestLink, searchListArgs, maxPage=10(default)) class
+
 ## interestLink (string)
 ### Here you will write your interest link who the bot will find at the links in the page
 
