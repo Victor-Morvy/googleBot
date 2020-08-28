@@ -38,4 +38,4 @@ pip install webdriver_manager
 ### execute()
  it will execute the bot
 
-# P.S. GOOGLE WILL SUSPECT YOU THIS PROGRAM IS A BOT :(
+# P.S. GOOGLE WILL SUSPECT YOU ARE BOT :(
