@@ -20,16 +20,16 @@ This is a google search bot, it will search the arguments who you write, and wil
 ### options(interestLink_, searchListArgs, maxPages)
  Set the Attributes values
 
-### get_list_search_args_size
+### get_list_search_args_size()
 #### it will return the size of searchListArgs
 
-### _check_next_exists
+### _check_next_exists()
  it will check and return true or false if the element next page exists on the page
 
-### _next_page
+### _next_page()
  it will click on the next page button
 
-### execute
+### execute()
  it will execute the bot
  
 # P.S. GOOGLE WILL SUSPECT YOU THIS PROGRAM IS A BOT :(
