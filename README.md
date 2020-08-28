@@ -3,6 +3,12 @@ This is a google bot, i used selenium webdriver in python 3.7.
 
 This is a google search bot, it will search the arguments who you write, and will find the interest link.
 
+Before you use that, install this modules:
+```
+pip install selenium
+pip install webdriver_manager
+```
+
 ## Instance Attributes
 
 ### set a variable for GoogleSearchBot(interestLink, searchListArgs, maxPage=10(default)) class
@@ -31,5 +37,5 @@ This is a google search bot, it will search the arguments who you write, and wil
 
 ### execute()
  it will execute the bot
- 
+
 # P.S. GOOGLE WILL SUSPECT YOU THIS PROGRAM IS A BOT :(
