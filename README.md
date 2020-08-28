@@ -12,7 +12,16 @@ pip install webdriver_manager
 ```
 import lib.googleBot as GoogleBot
 
-gBot = GoogleBot.GoogleSearchBot(interestLink, searchListArgs, maxPage=10(default))
+roBot = GoogleBot.GoogleSearchBot("facebook.com", [
+        "casa em vinhedo",
+        "aluguel em vinhedo",
+        "casas em vinhedo",
+        "comprar casa em vinhedo",
+        "comprar casas em vinhedo",
+        "comprar casa em louveira"
+    ])
+    
+roBot.execute()
 ```
 
 ## Instance Attributes
