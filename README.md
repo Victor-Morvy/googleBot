@@ -31,7 +31,7 @@ gBot = GoogleBot.GoogleSearchBot(interestLink, searchListArgs, maxPage=10(defaul
 ```Set the Attributes values```
 
 ### get_list_search_args_size()
-#### it will return the size of searchListArgs
+```it will return the size of searchListArgs```
 
 ### _check_next_exists()
 ```it will check and return true or false if the element next page exists on the page```
@@ -42,4 +42,4 @@ gBot = GoogleBot.GoogleSearchBot(interestLink, searchListArgs, maxPage=10(defaul
 ### execute()
 ```it will execute the bot```
 
-# P.S. GOOGLE WILL SUSPECT YOU ARE BOT :(
+# P.S.: UNFORTUNATELY GOOGLE WILL SUSPECT YOU ARE BOT :(
