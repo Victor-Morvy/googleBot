@@ -51,4 +51,4 @@ roBot.execute()
 ### execute()
 ```it will execute the bot```
 
-# P.S.: UNFORTUNATELY GOOGLE WILL SUSPECT YOU ARE BOT :(
+# P.S.: UNFORTUNATELY GOOGLE WILL SUSPECT YOU ARE BOT
