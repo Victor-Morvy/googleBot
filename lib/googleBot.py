@@ -11,7 +11,7 @@ import os
 
 class GoogleSearchBot():
 
-    def __init__(self, interestLink, searchListArgs, maxPages=10):
+    def __init__(self, interestLink, searchListArgs, maxPages=10, autoCloseTab=False, maxRandTimeInPage=5, autoCloseBrowser=False):
         self.option = Options()
         self.option.add_argument("--no-sandbox")  # bypass OS security model
         self.option.add_argument("--disable-dev-shm-usage")  # overcome limited resource problems
@@ -24,8 +24,14 @@ class GoogleSearchBot():
         self.interestLink = interestLink
         #argument list ["","",""]
         self.searchListArgs = searchListArgs
-
+        #if autoCloseTab is true, the bot will automatically change for new tab and close after you open that
+        #False as default
+        self.autoCloseTab = autoCloseTab
+        #The maximum random time in page will set the time who the bot will "Sleep" in search page
+        self.maxRandTimeInPage = maxRandTimeInPage
         self.totalSearchPages = maxPages-1
+        #Auto close the browser when task is finished
+        self.autoCloseBrowser = autoCloseBrowser
 
         #download and creating webdriver in machine
         self.driver = webdriver.Chrome(options=self.option, executable_path=ChromeDriverManager().install())
@@ -37,10 +43,13 @@ class GoogleSearchBot():
         self.actions = ActionChains(self.driver)
 
     # set some options of object
-    def options(self, interestLink_, searchArgList_, maxPages_=10):
+    def options(self, interestLink_, searchArgList_, maxPages_=10, autoCloseTab_=False, maxRandTimeInPage_=5, autoCloseBrowser_=False):
         self.interestLink = interestLink_
         self.searchListArgs = searchArgList_
         self.totalSearchPages = maxPages_
+        self.autoCloseTab = autoCloseTab_
+        self.maxRandTimeInPage = maxRandTimeInPage_
+        self.autoCloseBrowser = autoCloseBrowser_
 
     #get the size of list search arguments
     def get_list_search_args_size(self):
@@ -64,14 +73,13 @@ class GoogleSearchBot():
             return 0
 
     def execute(self):
-
+        print(f"Interest  link: {self.interestLink}")
+        print(f"List of arguments: {self.searchListArgs}")  # Debug------------------------------------
         try:
 
             #for in list of arguments
             for listArgElement in self.searchListArgs:
-                print(listArgElement) #Debug------------------------------------
-                print(self.searchListArgs) #Debug------------------------------------
-                # set page number control variable
+                print(f"Searching argument: {listArgElement}....") #Debug------------------------------------
 
                 # submit the search in google
                 self.input_element = self.driver.find_element_by_name("q")
@@ -82,9 +90,9 @@ class GoogleSearchBot():
                 time.sleep(0.2)
 
                 for i in range(self.totalSearchPages):
-                    time.sleep(random.randrange(1, 6))
+                    time.sleep(random.randrange(1, self.maxRandTimeInPage))
                     self.openedPages = 0
-                    print(i)# Debug-------------------------------------
+                    print(f"page index: {i+1}")# Debug-------------------------------------
                     time.sleep(0.5)
                     try:
                         #get all interest elements to click
@@ -108,20 +116,26 @@ class GoogleSearchBot():
                         self.openedPages += 1
                         self.actions.key_up(Keys.LEFT_CONTROL).perform()
 
-                        '''#Select new tab, wait run page and close
-                        self.driver.switch_to.window(self.driver.window_handles[-1])
-                        #time.sleep(0.3)
-                        self.driver.close()
-                        self.driver.switch_to.window(self.mainTab)'''
+                        if self.autoCloseTab:
+                            #Select new tab, wait run page and close
+                            self.driver.switch_to.window(self.driver.window_handles[-1])
+                            #time.sleep(0.3)
+                            self.driver.close()
+                            self.driver.switch_to.window(self.mainTab)
 
                     if not self._next_page():
                         break
 
+            print(f"Total pages opened: {self.openedPages}")# Debug-------------------------------------
 
-            time.sleep(5)
-            #self.driver.close()
-        except Exception as e:
+            time.sleep(1.5)
+
+            if self.autoCloseBrowser:
+                self.driver.close()
+
+        except (Exception, ValueError, TypeError) as e:
             self.msg_error = e
             print(self.msg_error)
             pass
             #self.driver.close()
+
