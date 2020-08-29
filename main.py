@@ -1,5 +1,9 @@
-import lib.googleBot as GoogleBot
+'''
+Data_Criação: 2020-08-28
+- Main run de testes -
+'''
 
+import lib.googleBot as GoogleBot
 
 if __name__ == '__main__':
 

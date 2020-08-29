@@ -1,3 +1,29 @@
+'''
+Data_Criação: 2020-08-28
+Projeto.....: Google Search Bot
+Arquivo.....: googleBot.py
+Descrição...: módulo de bot para pesquisas no google
+Autor.......: Victor Hugo Martins de Oliveira - Morvy
+GitHub_User.: Victor-Morvy
+Observações.:
+- Github link do projeto: https://github.com/Victor-Morvy/googleBot [Repositório Privado desde 2020-08-29]
+              ...
+
+Atualizações:
+    - 2020-08-27:
+        - [R00] Criação do projeto
+    - 2020-08-28:
+        - [R01] Funções básicas criadas, bot funcionando
+        - Obs.: O google detectou ser um bot
+    - 2020-08-29:
+        - O projeto encontra-se privado para outros usuários no GitHub
+              ...
+
+Referencias:
+    https://pypi.org/project/webdrivermanager
+    https://selenium-python.readthedocs.io/
+'''
+
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -17,7 +43,7 @@ class GoogleSearchBot():
         self.option.add_experimental_option("excludeSwitches", ["enable-automation"])
         self.option.add_experimental_option('useAutomationExtension', False)
 
-        # variables
+        #Attributes
         self.msg_error = ""
         #number of page amount (too much pages opened may cause lag)
         self.interestLink = interestLink
