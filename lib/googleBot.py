@@ -6,7 +6,7 @@ Descrição...: módulo de bot para pesquisas no google
 Autor.......: Victor Hugo Martins de Oliveira - Morvy
 GitHub_User.: Victor-Morvy
 Observações.:
-- Github link do projeto: https://github.com/Victor-Morvy/googleBot [Repositório Privado desde 2020-08-29]
+- Github link do projeto: https://github.com/Victor-Morvy/googleBot
               ...
 
 Atualizações:
@@ -17,6 +17,8 @@ Atualizações:
         - Obs.: O google detectou ser um bot
     - 2020-08-29:
         - O projeto encontra-se privado para outros usuários no GitHub
+    - 2020-08-30:
+
               ...
 
 Referencias:
@@ -54,18 +56,28 @@ class GoogleSearchBot():
         self.autoCloseTab = autoCloseTab
         #The maximum random time in page will set the time who the bot will "Sleep" in search page
         self.maxRandTimeInPage = maxRandTimeInPage
-        self.totalSearchPages = maxPages-1
+        self.totalSearchPages = maxPages
         #Auto close the browser when task is finished
         self.autoCloseBrowser = autoCloseBrowser
 
+        # Google open driver and xPaths configs
+        self.xPathGoogleNext = '//*[@id="pnnext"]'
+
+    #will open the driver
+    def start_driver(self):
         #download and creating webdriver in machine
         self.driver = webdriver.Chrome(options=self.option, executable_path=ChromeDriverManager().install())
-        #self.driver = webdriver.Chrome(ChromeDriverManager().install())
-
-        # Google open driver and xPaths configs
+        # self.driver = webdriver.Chrome(ChromeDriverManager().install())
         self.driver.get("http://www.google.com")
-        self.xPathGoogleNext = '//*[@id="pnnext"]'
+
+        #set actions object
         self.actions = ActionChains(self.driver)
+
+    #will close the driver
+    '''
+    def close_driver(self):
+        self.driver.close()
+    '''
 
     # set some options of object
     def options(self, interestLink_, searchArgList_, maxPages_=10, autoCloseTab_=False, maxRandTimeInPage_=5, autoCloseBrowser_=False):
@@ -98,6 +110,8 @@ class GoogleSearchBot():
             return 0
 
     def execute(self):
+        self.start_driver()
+        self.openedPages = 0
         print(f"Interest  link: {self.interestLink}")
         print(f"List of arguments: {self.searchListArgs}")  # Debug------------------------------------
         try:
@@ -116,13 +130,13 @@ class GoogleSearchBot():
 
                 for i in range(self.totalSearchPages):
                     time.sleep(random.randrange(1, self.maxRandTimeInPage))
-                    self.openedPages = 0
+
                     print(f"page index: {i+1}")# Debug-------------------------------------
                     time.sleep(0.5)
                     try:
                         #get all interest elements to click
                         self.elementsToClick = self.driver.find_elements_by_xpath(
-                            f'//*[@id="rso"]//div/div[1]/a[contains(@href,\'{self.interestLink}\')]')
+                            f'//*[@id="rso"]//div/div[1]/a[contains(@href,\'{self.interestLink}\')]/div')
                     except SystemError as e:
                         self.msg_error = e
                         print(self.msg_error)
