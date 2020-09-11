@@ -1,5 +1,5 @@
-# googleBot
-This is a google bot, i used selenium webdriver in python 3.7.
+# googleBot scrapy bot
+This is a simple google scrapy bot, i used selenium webdriver in python 3.7.
 
 ```This is a google search bot, it will search the arguments who you write, and will find the interest link.```
 
