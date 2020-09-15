@@ -1,9 +1,7 @@
 # googleBot page finder bot
-This is a simple google page finder bot, i used selenium webdriver in python 3.7.
+Este é um page finder de interesse utilizando argumentos de pesquisa no google, feito para estudos
 
-```This is a google search bot, it will search the arguments who you write, and will find the interest link.```
-
-Before you use that, install this modules:
+Módulos utilizados:
 ```
 pip install selenium
 pip install webdriver_manager
@@ -53,4 +51,4 @@ roBot.execute()
 ### execute()
 ```it will execute the bot```
 
-# P.S.: UNFORTUNATELY GOOGLE WILL SUSPECT YOU ARE BOT
+# P.S.: Google will know it's a bot
